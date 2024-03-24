@@ -1,0 +1,8 @@
+input:invalid[focused="true"] ~ p {
+  visibility: visible;
+}
+
+input:invalid[focused="true"] {
+  border: 1px solid red;
+  color: red;
+}

@@ -42,21 +42,32 @@ const Form = () => {
     password: "",
   };
   const [formData, setFormData] = useState(initialState);
-  console.log(formData);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log("submit");
+  };
+
   return (
     <main className="container mx-auto flex justify-center">
-      <form className="w-[50%]">
+      <form onSubmit={submitForm} className="w-[50%]">
         <h1>This is heading of the form</h1>
         <h3>This is the subheading</h3>
         {inputs.map((input) => (
           <FormInput key={input.id} {...input} changeHandler={changeHandler} />
         ))}
+        <button
+          disabled={!isFormValid}
+          className="block ml-auto px-8 py-3 text-sm border border-white rounded hover:bg-white disabled:bg-black hover:text-black disabled:text-white transition duration-300 disabled:cursor-not-allowed"
+        >
+          Submit
+        </button>
       </form>
     </main>
   );
